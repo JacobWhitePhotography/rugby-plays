@@ -98,6 +98,181 @@ const LIB=[
     {p:{"5":[20,40],"9":[22,43]},b:"9",n:"Win it back. 9 gets to the ball and we attack."}
   ])
 ];
+/* ---------- More moves (own versions of common set plays) ---------- */
+function shift(o,dx,dy){const r={};for(const[k,v] of Object.entries(o))r[k]=[v[0]+dx,v[1]+dy];return r}
+/* Lineout on our left touchline inside their 22 (lineout line 15m from their try line) */
+const LO22=shift(BASE.lineout,0,-45);
+const DEF22={o1:[16,11],o2:[22,10],o3:[29,9.5],o4:[36,9.5],o5:[45,10],o6:[56,10.5]};
+/* Scrum 12m out, 20m in from left touch */
+const SC22=Object.assign({},scrumAt(20,12),{"9":[17.6,13.5],"10":[27,18],"12":[33,19],"13":[40,20],"14":[60,21],"11":[7,18],"15":[36,28]});
+const DEFSC22={o9:[18,10.5],o1:[26,9],o2:[33,8.5],o3:[40,8.5],o4:[50,9],o5:[9,9]};
+/* Midfield scrum on the right, used for "scrum right" moves */
+const SCR=Object.assign({},scrumAt(46,14),{"9":[48.4,15.5],"10":[40,20],"12":[34,21],"13":[27,22],"11":[12,23],"14":[60,20],"15":[32,30]});
+
+const LIB2=[
+  build("lib-scrum-right-13x",{title:"Scrum right, 13 cross",cat:"Scrum",call:"Scrum · 13 X",level:"Intermediate"},SCR,{o9:[46,11.5],o1:[39,10],o2:[33,9.5],o3:[26,9.5],o4:[14,10]},[
+    {b:"9",n:"Scrum close to their line, feeding from the right. Backs line up to the left."},
+    {p:{"9":[47,18]},b:"9",n:"9 picks up from the base of the scrum."},
+    {p:{"10":[39,18]},b:"10",n:"9 passes to 10, who runs across the face of the defence."},
+    {p:{"10":[35,17],"12":[31,18],"13":[30,16],o1:[37,12],o2:[33,12]},b:"10",n:"10 drifts left, taking their 10 and 12 with him. 13 cuts back on a hard inside line."},
+    {p:{"13":[33,12],"10":[34,16.5],o2:[31,11]},b:"13",n:"Cross. 10 pops to 13 coming back against the drift."},
+    {p:{"13":[36,1],"12":[30,6]},b:"13",n:"13 goes through the gap behind their 10 to score."}
+  ]),
+  build("lib-lo-false",{title:"Lineout false options",cat:"Lineout",call:"Black · Decoys",level:"Intermediate"},LO22,DEF22,[
+    {b:"2",n:"Lineout in their 22. Throw to 5 in the middle."},
+    {p:{"5":[12,14.4]},b:"5",n:"5 catches and gives it straight off the top to 9."},
+    {p:{"9":[13,17.5],"10":[21,19.5]},b:"10",n:"9 passes flat to 10."},
+    {p:{"10":[23,17.5],"6":[17,12.5],"12":[25,13],"13":[30,19],o1:[17,12],o2:[23,12]},b:"10",n:"Two decoys. 6 peels off the lineout and 12 runs hard at their 12. Both must sell it."},
+    {p:{"13":[29,14],"10":[24,16.5],o3:[27,11.5]},b:"13",n:"10 skips both decoys and hits 13 running into the space they've made."},
+    {p:{"13":[31,3],"15":[36,9]},b:"13",n:"13 breaks. 15 supports on the outside for the last pass."}
+  ]),
+  build("lib-lo-inside-11",{title:"Lineout inside ball to blind wing",cat:"Lineout",call:"Red · Blind 11",level:"Beginner"},BASE.lineout,{o1:[22,55],o2:[29,55.5],o3:[36,56],o4:[45,56.5]},[
+    {b:"2",n:"Throw to 4 at the front."},
+    {p:{"4":[7.5,59.4]},b:"4",n:"4 catches and gives it off the top to 9."},
+    {p:{"9":[13,62],"10":[21,64]},b:"10",n:"9 passes to 10. 11 starts his run from the blindside."},
+    {p:{"10":[24,61],"12":[30,61],"11":[15,63],o1:[24,57],o2:[30,58]},b:"10",n:"10 runs at the line with 12 outside him. 11 comes round behind the lineout on an angle."},
+    {p:{"11":[21,58],"10":[25,60]},b:"11",n:"Inside pass. 10 holds his man and turns the ball back to 11 coming through at pace."},
+    {p:{"11":[19,46],"9":[16,52]},b:"11",n:"11 is through the gap between their 9 and 10. 9 follows for support."}
+  ]),
+  build("lib-maul-fake-9",{title:"Fake maul, inside to 9",cat:"Lineout",call:"Black · Show maul",level:"Intermediate"},LO22,DEF22,[
+    {b:"2",n:"Throw to 5 in the middle. Everyone shows the maul."},
+    {p:{"5":[12,14.4]},b:"5",n:"5 catches. Lifters bring him down."},
+    {p:{"5":[12,15.6],"6":[11,15.4],"8":[13,15.4],"1":[11,16.6],"3":[13,16.6],"4":[12,17.2],"7":[12.6,17.8],"2":[13.8,17.6]},b:"8",n:"Bind as if to drive. The ball is moved to 8 at the back."},
+    {p:{"8":[17,15],"9":[15,18.5],o1:[17,12.5],o2:[22,12]},b:"8",n:"Instead of driving, 8 breaks off the back towards the open side and draws their defenders."},
+    {p:{"9":[16,13.8],"8":[18.5,14.5]},b:"9",n:"8 turns the ball back inside to 9, who has run round the back of the maul."},
+    {p:{"9":[13,4],"2":[11,10]},b:"9",n:"9 goes through the gap next to the maul. Hooker follows for support."}
+  ]),
+  build("lib-maul-blind-options",{title:"Maul, then three blindside options",cat:"Lineout",call:"Drive · Blind triple",level:"Advanced"},LO22,DEF22,[
+    {b:"2",n:"Throw to 5 in the middle."},
+    {p:{"5":[12,14.4]},b:"5",n:"5 catches and the maul forms."},
+    {p:{"5":[12,15.6],"6":[11,15.4],"8":[13,15.4],"1":[11,16.6],"3":[13,16.6],"4":[12,17.2],"7":[12.6,17.8],"2":[11.4,17.8],"9":[13,19.5],"11":[5,20]},b:"2",n:"Bind and set. 11 comes in off his wing to stand blind, between the maul and the touchline."},
+    {p:{"5":[12,10.6],"6":[11,10.4],"8":[13,10.4],"1":[11,11.6],"3":[13,11.6],"4":[12,12.2],"7":[12.6,12.8],"2":[11.4,12.8],"9":[12.5,14.5],"11":[5,16],"15":[8,20],o1:[14,8]},b:"2",n:"Drive 5 metres. Their defence gets sucked into the maul."},
+    {p:{"9":[9,13.5],"7":[8,11],o1:[10,9]},b:"9",n:"9 takes it off the back and goes blind. Option 1: 7 peels off short."},
+    {p:{"9":[7.5,12],"11":[6,11],"15":[5,14]},b:"11",n:"Option 2: 9 draws the last man and gives it to 11 on an inside line."},
+    {p:{"11":[4,4],"15":[3,10]},b:"11",n:"Option 3: if 11 is tackled, 15 is trailing on the touchline for the offload."}
+  ]),
+  build("lib-hooker-loop",{title:"Hooker loop maul",cat:"Lineout",call:"Red · Hooker round",level:"Intermediate"},LO22,DEF22,[
+    {b:"2",n:"Throw to 4 at the front."},
+    {p:{"4":[7.5,14.4]},b:"4",n:"4 catches. The pod brings him down quickly."},
+    {p:{"4":[7.5,15.6],"1":[6.5,15.4],"3":[8.5,15.4],"6":[7.5,16.6],"2":[5,17],"11":[3,21]},b:"4",n:"Front maul sets. The hooker loops round the back as soon as he has thrown."},
+    {p:{"4":[7.5,12.6],"1":[6.5,12.4],"3":[8.5,12.4],"6":[7.5,13.6],"2":[7.5,15],"11":[4,17]},b:"2",n:"Short drive. The ball is fed back to the hooker at the tail."},
+    {p:{"2":[4.5,12],o1:[6,9]},b:"2",n:"Hooker breaks off the back, down the touchline side."},
+    {p:{"11":[7,9],"2":[3.5,10]},b:"11",n:"Their last defender commits to the hooker. Inside pass to 11."},
+    {p:{"11":[9,0]},b:"11",n:"11 scores."}
+  ]),
+  build("lib-maul-10-inside",{title:"Maul, then 10 inside to the wing",cat:"Lineout",call:"Drive · Wing in",level:"Intermediate"},LO22,DEF22,[
+    {b:"2",n:"Throw to 5. Set the maul."},
+    {p:{"5":[12,15.6],"6":[11,15.4],"8":[13,15.4],"1":[11,16.6],"3":[13,16.6],"4":[12,17.2],"7":[12.6,17.8],"2":[11.4,17.8],"9":[13,19.5]},b:"7",n:"Maul set. Backs stay deep and patient."},
+    {p:{"5":[12,12.6],"6":[11,12.4],"8":[13,12.4],"1":[11,13.6],"3":[13,13.6],"4":[12,14.2],"7":[12.6,14.8],"2":[11.4,14.8],"9":[13.5,16],"10":[21,18],"12":[27,19],"11":[6,20]},b:"9",n:"Drive. When it stops, 9 takes it off the back. 11 leaves the blindside and runs behind the maul."},
+    {p:{"10":[23,15],"12":[28,15],"11":[16,17],o2:[23,11],o3:[28,11]},b:"10",n:"9 to 10, who attacks flat with 12 outside. 11 keeps coming on the inside."},
+    {p:{"11":[21,12],"10":[23.5,14]},b:"11",n:"10 checks and gives it inside to 11 hitting the hole between their 9 and 10."},
+    {p:{"11":[20,0]},b:"11",n:"11 runs through to score."}
+  ]),
+  build("lib-two-crash-otb",{title:"Two crash runners, out the back",cat:"Lineout",call:"Double crash",level:"Beginner"},BASE.lineout,{o1:[22,55],o2:[29,55.5],o3:[36,56],o4:[44,56.5],o5:[55,57]},[
+    {b:"2",n:"Throw to 4 at the front. Quick ball off the top to 9."},
+    {p:{"4":[7.5,59.4],"9":[13,62]},b:"9",n:"9 has the ball."},
+    {p:{"10":[22,63],"9":[14,61.5]},b:"10",n:"9 passes to 10."},
+    {p:{"10":[24,62],"6":[23,58],"12":[29,59],"13":[32,63],o1:[23,57],o2:[29,57.5]},b:"10",n:"Two crash runners: 6 and 12 run hard at their 10 and 12. 13 sits behind them."},
+    {p:{"13":[34,61],"10":[25,61.5]},b:"13",n:"Option 1 is either crash runner. Option 2: 10 goes out the back to 13."},
+    {p:{"13":[40,57],"14":[52,57],"15":[45,60],o3:[38,56],o4:[45,56]},b:"13",n:"13 attacks the outside shoulder with 15 and 14 wide."},
+    {p:{"14":[56,46],"13":[42,55]},b:"14",n:"13 draws and passes. 14 is away down the wing."}
+  ]),
+  build("lib-skip-10",{title:"Skip 10, two out-the-back options",cat:"Backs",call:"Skip · 12 tree",level:"Beginner"},BASE.open,{o1:[24,48],o2:[31,48],o3:[38,48.5],o4:[47,49],o5:[57,50]},[
+    {b:"9",n:"9 at the ruck. 10 stands flat as a decoy."},
+    {p:{"10":[25,54],"12":[31,56]},b:"12",n:"9 skips 10 and passes long to 12. 10 runs at their 10 to hold him."},
+    {p:{"12":[33,53],"13":[37,51],"15":[38,56],o2:[32,50],o3:[37,50]},b:"12",n:"12 attacks. 13 runs a hard front line. 15 sits behind as the out-the-back option."},
+    {p:{"15":[40,54],"12":[34,52.5]},b:"15",n:"Their 13 bites on the front runner, so 12 goes out the back to 15."},
+    {p:{"15":[45,51],"11":[52,53],"14":[55,55],o4:[46,49],o5:[55,50]},b:"15",n:"15 runs with two wide options outside him."},
+    {p:{"14":[58,44],"15":[48,48]},b:"14",n:"15 draws their last man. 14 finishes on the outside."}
+  ]),
+  build("lib-pod-otb",{title:"Forward pod, out the back",cat:"Open play",call:"Pod · Back door",level:"Intermediate"},BASE.open,{o1:[22,48],o2:[27,48],o3:[32,48],o4:[38,48.5],o5:[46,49]},[
+    {b:"9",n:"9 at the ruck. A three-man pod of 1, 2 and 3 sets up flat. 10 sits behind them."},
+    {p:{"1":[24,52],"2":[27,51.5],"3":[30,52],"10":[27,55]},b:"9",n:"Pod moves onto the ball together. 10 stays hidden behind it."},
+    {p:{"2":[27,50],"1":[25.5,50.5],"3":[28.5,50.5],o2:[27,49],o1:[24,49],o3:[30,49]},b:"2",n:"9 hits the hooker in the middle of the pod. Their defenders fold in to stop the carry."},
+    {p:{"10":[30,53]},b:"10",n:"Hooker passes out the back of the pod to 10."},
+    {p:{"10":[34,50],"12":[38,51],"13":[43,52],o4:[37,49]},b:"10",n:"10 attacks the space left by their folded defenders with backs outside."},
+    {p:{"13":[47,44],"10":[36,48]},b:"13",n:"10 to 13 via 12. Overlap on the outside."}
+  ]),
+  build("lib-left-scrum-11",{title:"Left scrum, inside to the wing",cat:"Scrum",call:"Scrum · Wing in",level:"Beginner"},Object.assign({},scrumAt(18,50),{"9":[15.6,51.5],"10":[25,56],"12":[31,57],"13":[38,58],"14":[58,59],"11":[6,57],"15":[34,66]}),{o9:[16,48.5],o1:[24,47],o2:[31,46.5],o3:[38,47],o4:[48,48]},[
+    {b:"9",n:"Scrum on the left. Open side is to the right."},
+    {p:{"9":[17,54]},b:"9",n:"9 picks up from the base."},
+    {p:{"10":[26,55]},b:"10",n:"9 to 10. 11 leaves the blindside wing."},
+    {p:{"10":[29,53],"12":[33,54],"11":[18,56],o1:[27,49],o2:[32,49]},b:"10",n:"10 runs across with 12 outside. Their defence drifts with him. 11 comes in behind on a straight line."},
+    {p:{"11":[25,50],"10":[30,52.5]},b:"11",n:"Inside ball to 11, hitting the gap in the middle of the field."},
+    {p:{"11":[24,38],"9":[21,45]},b:"11",n:"11 is through. 9 tracks inside for the offload."}
+  ]),
+  build("lib-otb-screen",{title:"Out the back",cat:"Open play",call:"Screen",level:"Intermediate"},BASE.open,{o1:[24,48],o2:[30,48],o3:[37,48.5],o4:[45,49]},[
+    {b:"9",n:"The most used shape in rugby. 9 at the ruck."},
+    {p:{"10":[25,54]},b:"10",n:"9 passes to 10. 12 lines up flat outside him. 13 sits deeper behind 12."},
+    {p:{"10":[27,52],"12":[32,51],"13":[31,55],o2:[31,49.5]},b:"10",n:"10 attacks the line. 12 runs flat and hard as the screen, calling for the ball."},
+    {p:{"13":[34,53],"10":[28,51.5]},b:"13",n:"Their 12 commits to the screen runner. 10 passes behind him to 13."},
+    {p:{"13":[40,49],"14":[52,50],o3:[39,48],o4:[46,48]},b:"13",n:"13 now has their 13 isolated with 14 outside him."},
+    {p:{"14":[56,40],"13":[42,47]},b:"14",n:"Draw and pass. 14 scores in the corner."}
+  ]),
+  build("lib-3-pod",{title:"Three-man pod",cat:"Open play",call:"Pod",level:"Intermediate"},BASE.open,{o1:[25,48],o2:[29,48],o3:[33,48],o4:[39,48.5]},[
+    {b:"9",n:"Three forwards side by side, about a metre apart, a few metres from the ruck."},
+    {p:{"1":[26,51.5],"2":[29,51],"3":[32,51.5]},b:"9",n:"Pod gets flat and square, ready to move onto the ball."},
+    {p:{"2":[29,49.5],"1":[27.8,50],"3":[30.2,50]},b:"2",n:"Variation 1: 9 hits the middle man. The two outside him bind on and drive him over the gainline."},
+    {p:{"2":[29,51],"1":[26,51.5],"3":[32,51.5],"10":[29,55]},b:"9",n:"Reset. Variation 2: the middle man gets it and tips it on to a pod player at the line."},
+    {p:{"2":[29,50.5],"3":[31.5,49.5],o3:[32,49]},b:"3",n:"The tip pass shifts the point of contact and catches their defence flat-footed."},
+    {p:{"3":[31.5,51],"2":[29,51.5],"10":[32,53.5]},b:"10",n:"Variation 3: the middle man passes out the back to 10, sitting behind the pod."}
+  ]),
+  build("lib-simple-scrum-22",{title:"Simple scrum play in their 22",cat:"Scrum",call:"Scrum · Three options",level:"Beginner"},SC22,DEFSC22,[
+    {b:"9",n:"Scrum just inside their 22. Three options from one call."},
+    {p:{"9":[19,15.5]},b:"9",n:"Ball at the base. 9 picks up."},
+    {p:{"8":[18.5,10],o9:[18,9]},b:"8",n:"Option 1: if their 9 is slow, 8 picks and drives close to the scrum."},
+    {p:{"8":[20,15.4],"9":[19,15.5],"10":[26,17],"12":[30,15],"13":[35,17]},b:"10",n:"Reset to show option 2: 9 to 10, and 12 crashes a hard line."},
+    {p:{"12":[30,11],o1:[28,10],o2:[31,10]},b:"12",n:"12 carries hard at their 12. That sets up the next phase if nothing's on."},
+    {p:{"12":[30,15],"10":[27,15],"13":[36,13],o2:[33,10]},b:"13",n:"Option 3: 10 fakes to 12 and goes wide to 13 running at the outside shoulder."},
+    {p:{"13":[40,1]},b:"13",n:"13 scores in the wide channel."}
+  ]),
+  build("lib-5-fake-front",{title:"Five-man lineout, fake front",cat:"Lineout",call:"5 · Front show, back throw",level:"Beginner"},Object.assign({},BASE.lineout,{"1":[7,60],"4":[8.5,60],"3":[10,60],"5":[12.5,60],"6":[14,60],"8":[16,64],"7":[18,65]}),{o1:[7,61.2],o2:[8.5,61.2],o3:[10,61.2],o4:[12.5,61.2],o5:[14,61.2]},[
+    {b:"2",n:"Five-man lineout. 8 and 7 stand off it as receivers."},
+    {p:{"4":[8,59.5],"1":[7,59.7],"3":[9,59.7]},b:"2",n:"Front pod shows hard. 4 dips and makes as if to jump at the front."},
+    {p:{o2:[8.5,60.8],o1:[7.5,61],o3:[9.5,61]},b:"2",n:"Their front pod goes up to contest. That's what we want."},
+    {p:{"5":[13,59.4],"6":[14,59.8]},b:[13,59.4],n:"Hooker throws over the top to 5 at the back, lifted by 6."},
+    {p:{"5":[13,60.6],"8":[15,62],"9":[14,63]},b:"5",n:"5 lands and the ball goes off the top or down to 9."},
+    {p:{"9":[15,62.5],"10":[22,65]},b:"10",n:"Clean ball to 10, with their lineout tied up at the front."}
+  ]),
+  build("lib-4-double-loop",{title:"Four-man double loop",cat:"Lineout",call:"4 · Double loop",level:"Advanced"},Object.assign({},BASE.lineout,{"1":[7,60],"4":[8.5,60],"5":[10.5,60],"6":[12,60],"3":[20,66],"8":[18,64],"7":[16,65]}),{o1:[7,61.2],o2:[8.5,61.2],o3:[10.5,61.2],o4:[12,61.2]},[
+    {b:"2",n:"Four-man lineout. 3, 7 and 8 stand off as a pod."},
+    {p:{"4":[9,59.6],"1":[7.5,59.7]},b:"2",n:"4 and 1 show for a front ball."},
+    {p:{"5":[7,59.5],"6":[8,58.8],"4":[11,59.8],"1":[12.5,59.8]},b:"2",n:"First loop: 5 and 6 run round the front. 4 and 1 slide back. Their jumpers follow to the front."},
+    {p:{"4":[12,59.4],"1":[13,59.7],o2:[7.5,60.8],o1:[6.5,61]},b:"2",n:"Second loop: 4 and 1 reset at the back. Their pod is now committed at the front."},
+    {p:{"4":[12,59.2]},b:[12,59.2],n:"Throw to 4 at the back."},
+    {p:{"4":[12,60.6],"9":[13,62.5]},b:"9",n:"4 delivers to 9."},
+    {p:{"10":[22,64],"9":[14,62]},b:"10",n:"9 to 10. The forward pod is free to carry on the next phase."}
+  ]),
+  build("lib-5-back-loop",{title:"Five-man back loop",cat:"Lineout",call:"5 · Back loop",level:"Beginner"},Object.assign({},BASE.lineout,{"1":[7,60],"4":[8.5,60],"3":[10,60],"5":[12.5,60],"6":[14,60],"8":[16,64],"7":[18,65]}),{o1:[7,61.2],o2:[8.5,61.2],o3:[10,61.2],o4:[12.5,61.2],o5:[14,61.2]},[
+    {b:"2",n:"Five-man lineout. The aim is to show a back ball and throw to the front."},
+    {p:{"5":[13,59.5],"6":[14,59.7]},b:"2",n:"5 and 6 at the back show hard for the throw."},
+    {p:{o4:[13,60.8],o5:[14,61]},b:"2",n:"Their jumpers at the back mark them."},
+    {p:{"5":[7.5,59.5],"6":[11,59.7],"4":[8.5,59.8]},b:"2",n:"5 loops round to the front as the hooker sets. 6 slides forward to lift."},
+    {p:{"5":[7.5,59.2],"1":[6.5,59.8]},b:"5",n:"Quick, flat throw to 5 at the front."},
+    {p:{"5":[7.5,60.6],"9":[11,62.5]},b:"9",n:"Ball to 9. Front ball won against a defence set for the back."}
+  ]),
+  build("lib-centre-scrum",{title:"Centre scrum overlap",cat:"Scrum",call:"Scrum · 15 in",level:"Intermediate"},Object.assign({},scrumAt(35,50),{"9":[32.6,51.5],"10":[29,57],"12":[24,58],"13":[18,59],"11":[8,60],"14":[50,59],"15":[30,66]}),{o9:[33,48.5],o1:[28,47],o2:[22,46.5],o3:[16,47],o4:[8,48]},[
+    {b:"9",n:"Scrum in the middle of the field. Backs set to the left."},
+    {p:{"9":[33,54]},b:"9",n:"9 picks up."},
+    {p:{"10":[28,56],"15":[27,62]},b:"10",n:"9 to 10. 15 starts running to join the line."},
+    {p:{"10":[25,54],"12":[21,55],"15":[23,58]},b:"12",n:"10 to 12. 15 hits the line between 12 and 13."},
+    {p:{"15":[19,54],"12":[20,53],"13":[14,56],o2:[21,49],o3:[16,49]},b:"15",n:"12 to 15. That gives us an extra player against their last two defenders."},
+    {p:{"13":[12,52],"11":[6,52],"15":[16,51]},b:"13",n:"15 to 13, with 11 still outside."},
+    {p:{"11":[5,40],"13":[10,48]},b:"11",n:"13 draws the last man. 11 is clear down the wing."}
+  ]),
+  build("lib-fake-cross-otb",{title:"Fake cross, out the back",cat:"Backs",call:"Fake X",level:"Beginner"},BASE.open,{o1:[24,48],o2:[31,48],o3:[38,48.5],o4:[47,49]},[
+    {b:"9",n:"Four players: 10, 12, 13 and 15. Works from almost anywhere."},
+    {p:{"10":[25,54]},b:"10",n:"9 passes to 10."},
+    {p:{"10":[29,53],"12":[28,51],"13":[34,55],"15":[30,57],o1:[27,49],o2:[30,49]},b:"10",n:"10 runs across. 12 cuts back on a cross line behind him, and their 10 and 12 watch for the switch."},
+    {p:{"12":[27,50],"10":[31,52.5],"13":[36,54]},b:"10",n:"10 fakes the switch to 12 and keeps the ball."},
+    {p:{"15":[35,55],"10":[32,52]},b:"15",n:"10 goes out the back to 15, who has run round behind 13."},
+    {p:{"15":[41,49],"14":[54,52],o3:[40,48]},b:"15",n:"15 attacks the edge with 14 outside."},
+    {p:{"14":[58,42],"15":[43,47]},b:"14",n:"Draw and pass. 14 is away."}
+  ])
+];
+LIB.push(...LIB2);
+const LEVELS={"lib-front-strike":"Beginner","lib-maul":"Beginner","lib-89-blind":"Intermediate","lib-loop":"Intermediate","lib-switch":"Beginner","lib-miss13":"Intermediate","lib-blitz":"Intermediate","lib-short-ko":"Intermediate"};
+LIB.forEach(p=>{if(!p.level)p.level=LEVELS[p.id]||"Intermediate"});
 const TEMPLATES={
   open:{label:"Open play",cat:"Backs",base:BASE.open,ball:"9"},
   lineout:{label:"Lineout",cat:"Lineout",base:BASE.lineout,ball:"2"},
@@ -342,7 +517,7 @@ function catFilter(list){
   return h("div",{class:"chips",role:"group","aria-label":"Filter by type"},cats.map(c=>h("button",{class:"chip",type:"button","aria-pressed":S.filter===c?"true":"false",onclick:()=>{S.filter=c;render()}},c)));
 }
 function playCard(play,extra){
-  const meta=h("div",{class:"card-meta"},h("span",{class:"pill"},play.cat),h("span",{},play.steps.length+" steps"),extra||null);
+  const meta=h("div",{class:"card-meta"},h("span",{class:"pill"},play.cat),play.kind==="library"&&play.level?h("span",{class:"pill"},play.level):null,h("span",{},play.steps.length+" steps"),extra||null);
   return h("button",{class:"card",type:"button",onclick:()=>openPlayer(play)},
     h("div",{class:"thumb"},miniPitch(play)),
     h("div",{class:"card-body"},play.call?h("span",{class:"call"},play.call):null,h("span",{class:"card-title"},play.title),meta));

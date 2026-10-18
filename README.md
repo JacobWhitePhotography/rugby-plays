@@ -3,7 +3,7 @@
 An animated playbook for the team. Coaches build plays step by step on a phone. Players open one link, tap their name and watch. The coach can see who has watched each play.
 
 - **Plays**: the team's approved plays, with a watched count for the coach
-- **Library**: 8 ready-made moves (lineouts, scrums, backs, defence, kick-offs) to add or adapt
+- **Library**: 27 ready-made moves (lineouts, scrums, backs, open play, defence, kick-offs), each tagged Beginner, Intermediate or Advanced to add or adapt
 - **New**: draw a play. Drag players, drop the ball on a player to pass, and add steps with coaching notes
 - **Suggested**: anyone can suggest a play. The coach approves it, edits it or turns it down
 - **Squad**: 23 players (placeholders to start with). Players pick their name the first time they open the link
