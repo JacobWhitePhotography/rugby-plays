@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rugby Plays</title>
+<meta name="description" content="Our team playbook: animated plays, step by step.">
+<meta name="theme-color" content="#2E6A3E">
+<meta property="og:title" content="Rugby Plays">
+<meta property="og:description" content="Our team playbook: animated plays, step by step.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rugby Plays">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-in">
+  <div class="mark" aria-label="Rugby Plays">
+    <svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><rect x="0.5" y="0.5" width="29" height="21" rx="4" fill="var(--grass)"/><path d="M4 11h22M10 3v16M20 3v16" stroke="#fff" stroke-width="1.2" stroke-dasharray="2 2" opacity=".7"/><circle cx="9" cy="14" r="2.4" fill="var(--attack)" stroke="#fff" stroke-width=".8"/><circle cx="20" cy="7" r="2.4" fill="var(--attack)" stroke="#fff" stroke-width=".8"/><path d="M11 13l7-5" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="2 1.5"/></svg>
+    Rugby Plays
+  </div>
+  <div class="spacer"></div>
+  <button id="coachBtn" class="icon-btn" type="button" aria-label="Coach login"></button>
+  <button id="whoBtn" class="who" type="button"></button>
+</div></header>
+
+<main><div class="wrap" id="view"><p class="loading">Loading plays…</p></div></main>
+
+<nav class="tabbar" aria-label="Sections"><div class="tabbar-in" id="tabs"></div></nav>
+<div id="overlay"></div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
